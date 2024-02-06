@@ -32,6 +32,7 @@ public class TicTacToe
     private int winIndex;       // Provides the index of the row/col of the win
     private int turn;
 
+    private TicTacToeViewer window;
     private Square[][] board;
     private boolean isGameOver;
 
@@ -43,10 +44,11 @@ public class TicTacToe
      */
     public TicTacToe() {
         // Initialize Squares in the board
+        window = new TicTacToeViewer(this);
         this.board = new Square[3][3];
         for(int row = 0; row < this.board.length; row++) {
             for(int col = 0; col< this.board[row].length; col++) {
-                this.board[row][col] = new Square(row, col);
+                this.board[row][col] = new Square(window, row, col);
             }
         }
 
@@ -79,6 +81,7 @@ public class TicTacToe
      * Gets the direction and index of the win
      * and marks the winning squares
      */
+    // The spaces will know if they are involved in the winning space
     private void markWinningSquares() {
         for(int i=0; i<3; i++) {
             switch (this.winDirection) {
@@ -102,6 +105,7 @@ public class TicTacToe
      * Maintains the main game loop
      * Runs until a player wins or there is a tie.
      */
+    // Include paint method
     public void run() {
         Scanner input = new Scanner(System.in);
 
@@ -119,6 +123,7 @@ public class TicTacToe
             } else {
                 System.out.println("That space is taken, or you entered an invalid row/col");
             }
+            window.repaint();
         }
 
         this.printBoard();
@@ -137,6 +142,7 @@ public class TicTacToe
                 System.out.println("X Wins!");
             }
         }
+        // window.repaint();
     }
 
 
