@@ -66,15 +66,48 @@ public class Square {
         return this.marker;
     }
 
+
+    // Marker
+    // if marker = x
+    // set the box to x or o
+    // if winningsquare = true
+    // set all the winningsqure boxes to green
     public void draw(Graphics g, int row, int col) {
-        g.drawRect(40 + (row * 40), 40 + (col * 40), 40, 40);
-        // Marker
-        // if marker = x
-            // set the box to x or o
-        // if winningsquare = true
-            // set all the winningsqure boxes to green
+        // C.T. Can utilize class-scope instance variables and local parameters in methods.
+        if (isWinningSquare == true) {
+        g.setColor(Color.GREEN);
+        g.drawRect(150 + (col * 150), 150 + (row * 150), 150, 150);
+        g.fillRect(150 + (col * 150), 150 + (row * 150), 150, 150);
+        g.setColor(Color.BLACK);
+         }
 
+        // Border/Grid
+        g.setColor(Color.BLACK);
+        g.drawRect(150 + (row * 150), 150 + (col * 150), 150, 150);
 
+        // Row Axis
+        g.setFont(new Font("Serif", Font.BOLD, 40));
+        g.drawString("1", 225, 100);
+        g.drawString("2", 375, 100);
+        g.drawString("3", 525, 100);
+
+        // Col Axis
+        g.drawString("1", 100, 225);
+        g.drawString("2", 100, 375);
+        g.drawString("3", 100, 525);
+
+//        for (int i = 0; i < 3; i++) {
+//            g.drawString("i", 225 + (i * 150), 100)
+//            g.drawString("i", 100, 225 + (i * 150))
+//        }
+
+        // C.T. Can use if, while, and for.
+        if (marker.equals("O")) {
+            g.drawImage(oImage, 150 + (col  * 150), 150 + (row * 150), 150, 150, window);
+        }
+        else if (marker.equals("X")) {
+            g.drawImage(xImage, 150 + (col  * 150), 150 + (row * 150), 150, 150, window);
+        }
 
 
     }
